@@ -1,35 +1,31 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const SERVICES = [
-  "Window Cleaning",
-  "Gutter Cleaning",
-  "Pressure Washing",
-  "Commercial Services",
-  "Other"
-];
+
 
 const ContactForm = () => {
+    const [availableServices, setAvailableServices] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
-
-    const handleServiceChange = (e) => {
-        const options = Array.from(e.target.selectedOptions).map(opt => opt.value);
-        setSelectedServices(options);
-     };
-    const isOtherSelected = selectedServices.includes("Other");
-
-    const toggleService = (service) => {
-        setSelectedServices(prev =>
-            prev.includes(service)
-            ? prev.filter(item => item !== service) // unselect
-            : [...prev, service]                   // select
+    const api = import.meta.env.VITE_API_BASE_URL;
+    useEffect(() => {
+        axios.get(`${api}/api/services/`)
+            .then(response => {
+                setAvailableServices(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the services!", error);
+            });
+    }, []);
+     const toggleService = (label) => {
+         setSelectedServices(prev =>
+            prev.includes(label)
+            ? prev.filter(item => item !== label) // unselect
+            : [...prev, label]                   // select
         );
     };
-    const oneWeekFromToday = new Date();
-    oneWeekFromToday.setDate(oneWeekFromToday.getDate() + 7);
-    const formattedDate = oneWeekFromToday.toISOString().split('T')[0];
-
+    const isOtherSelected = selectedServices.includes("Other");
     return (
         <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlName" required>
@@ -47,14 +43,14 @@ const ContactForm = () => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlService">
                 <Form.Label>Select Services</Form.Label>
                 <div className="d-flex flex-wrap gap-2">
-                {SERVICES.map(service => (
+                {availableServices.map(service => (
                     <Button
-                        key={service}
-                        variant={selectedServices.includes(service) ? "primary" : "outline-primary"}
-                        onClick={() => toggleService(service)}
+                        key={service.id}
+                        variant={selectedServices.includes(service.label) ? "primary" : "outline-primary"}
+                        onClick={() => toggleService(service.label)}
                         size="md"
                         >
-                        {service}
+                        {service.label}
                     </Button>
                 ))}
                 </div>
