@@ -1,0 +1,22 @@
+/* .frosted-glass {
+  background: rgb(6, 107, 238);
+  backdrop-filter: blur(10px);
+  color: white;
+  border-radius: 1rem;
+} */
+
+.frosted-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: rem;
+}
+
+.card-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15rem; /* or whatever feels good */
+  padding-left: 5rem;
+}
