@@ -33,10 +33,10 @@ STORAGES = {
     }
 }
 
-SUPABASE_COCNNECTION = os.environ.get('SUPABASE_POSTGRESQL_CONNECTIONSTRING')
+SUPABASE_CONNECTION = os.environ.get('SUPABASE_POSTGRESQL_CONNECTIONSTRING')
 DATABASES = {
     'default': dj_database_url.parse(
-        SUPABASE_COCNNECTION,
+        SUPABASE_CONNECTION,
         conn_max_age=600,
         ssl_require=True
     )
