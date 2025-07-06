@@ -1,20 +1,7 @@
-.navbar-brand {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  
-}
-
-/* Logo image control */
 .navbar-logo {
-  /* max-height: 48px; */
   height: auto;
   width: auto;
   object-fit: contain;
-}
-
-
-.brand-title {
-  font-size: calc(1.5rem + 0.5vw) !important;
-  font-weight: bold;
 }
 
 .small-nav {
@@ -42,22 +29,39 @@
   pointer-events: none;
 }
 
-.sign-in-btn {
-  font-size: 1rem;
-  font-weight: 500;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  background: transparent;
-  transition: background 0.2s ease;
+/* .navbar-logo {
+  transform: translateX(25vh);
+} */
+
+/* Start Generation Here */
+/* Media queries for responsive navbar logo */
+
+/* Large screens (≥1205px) - default position */
+@media (min-width: 1200px) {
+  .navbar-logo {
+    transform: translateX(115%);
+  }
 }
 
-.sign-in-btn:hover {
-  background: #ffffff;
-  color: #000000;
-  text-decoration: none;
+/* Medium screens (768px - 1204) - reduce translation */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .navbar-logo {
+    transform: translateX(25%);
+  }
 }
 
-
-.start-15 {
-  left: 15% !important;
+/* Small screens (576px - 767px) - minimal translation */
+@media (min-width: 576px) and (max-width: 767px) {
+  .navbar-logo {
+    transform: translateX(8%);
+  }
 }
+
+/* Extra small screens (<576px) - no translation */
+@media (max-width: 575px) {
+  .navbar-logo {
+    transform: translateX(0);
+  }
+}
+/* End Generation Here */
+

@@ -1,22 +1,25 @@
-.cleaner-man {
-  width: 70%;
+.home-hero {
+  min-height: 100vh;
+  position: relative;
+  background: url('../../assets/big-clean-house.jpg') center center/cover no-repeat;
 }
 
-@media (min-width: 768px) {
-  .cleaner-man {
-    width: 60%;
+
+/* Default (desktop) - nudge the contact form higher */
+.form-move-up {
+  margin-top: -2rem;
+}
+
+/* Tablet (≤ 991.98px) - slightly reduce the nudge */
+@media (max-width: 991.98px) {
+  .form-move-up {
+    margin-top: -1rem;
   }
 }
 
-@media (min-width: 992px) {
-  .cleaner-man {
-    width: 55%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .cleaner-man {
-    width: 36%;
-    left: 41%;
+/* Phone (≤ 767.98px) - remove the nudge */
+@media (max-width: 767.98px) {
+  .form-move-up {
+    margin-top: 0;
   }
 }
