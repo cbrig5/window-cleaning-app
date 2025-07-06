@@ -1,16 +1,37 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import publicWebsite from '../../publicWebsite';
+import useAuthStatus from '../../hooks/useAuthStatus';
+import { ACCESS_TOKEN } from '../../constants';
+import website from '../../website';
 
 
 const ContactForm = () => {
     const [availableServices, setAvailableServices] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
+    const [userData, setUserData] = useState(null);
+    const isAuthorized = useAuthStatus();
+    
     const api = import.meta.env.VITE_API_BASE_URL;
+    
     useEffect(() => {
-        axios.get(`${api}/api/services/`)
+        const fetchUserData = async () => {
+            if (!isAuthorized) return;
+            try {
+                const token = localStorage.getItem(ACCESS_TOKEN);
+                if (!token) return;
+                const response = await website.get(`${api}/api/user-info/`);
+                setUserData(response.data);
+            } catch (error) {
+                console.error("There was an error fetching the user data!", error);
+            }
+        };
+        fetchUserData();
+    }, []);
+    
+    useEffect(() => {
+        publicWebsite.get(`${api}/api/services/`)
             .then(response => {
                 setAvailableServices(response.data);
             })
@@ -30,11 +51,11 @@ const ContactForm = () => {
         <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlName" required>
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="John Smith" />
+                <Form.Control type="text" placeholder="John Smith" value={ userData ? `${userData.first_name} ${userData.last_name}` : ''} onChange={() => {}}/>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlEmail" required>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlEmail" required >
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="name@example.com" />
+                <Form.Control type="email" placeholder="name@example.com"  value={ userData ? `${userData.email}` : ''} onChange={() => {}} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.CotnrolDate" required>
                 <Form.Label>Prefered Date</Form.Label>
