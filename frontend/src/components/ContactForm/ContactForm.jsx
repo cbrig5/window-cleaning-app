@@ -13,31 +13,32 @@ const ContactForm = () => {
     const [userData, setUserData] = useState(null);
     const isAuthorized = useAuthStatus();
     
-    const api = import.meta.env.VITE_API_BASE_URL;
-    
     useEffect(() => {
         const fetchUserData = async () => {
             if (!isAuthorized) return;
+    
+            const token = localStorage.getItem(ACCESS_TOKEN);
+            if (!token) return;
             try {
-                const token = localStorage.getItem(ACCESS_TOKEN);
-                if (!token) return;
-                const response = await website.get(`${api}/api/user-info/`);
+                const response = await website.get(`/api/user-info/`);
                 setUserData(response.data);
             } catch (error) {
                 console.error("There was an error fetching the user data!", error);
             }
         };
         fetchUserData();
-    }, []);
+    }, [isAuthorized]);
     
     useEffect(() => {
-        publicWebsite.get(`${api}/api/services/`)
-            .then(response => {
+        const fetchServices = async () => {
+            try {
+                const response = await publicWebsite.get(`api/services/`);
                 setAvailableServices(response.data);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error("There was an error fetching the services!", error);
-            });
+            }
+        };
+        fetchServices();
     }, []);
      const toggleService = (label) => {
          setSelectedServices(prev =>

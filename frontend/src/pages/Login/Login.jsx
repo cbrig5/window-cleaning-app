@@ -10,10 +10,7 @@ const Signin = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
-    });
-
-    const api = import.meta.env.VITE_API_BASE_URL;
-    
+    });    
     const navigate = useNavigate();
     
     const handleChange = (e) => {
@@ -25,9 +22,8 @@ const Signin = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
-            const res = await website.post(`${api}/api/token/`, {
+            const res = await website.post(`/api/token/`, {
                 username: formData.email,
                 password: formData.password
                 }

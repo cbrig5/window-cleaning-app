@@ -7,8 +7,6 @@ import publicWebsite from '../../publicWebsite';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const api = import.meta.env.VITE_API_BASE_URL;
-
   const {
     register,
     handleSubmit,
@@ -25,7 +23,7 @@ const Signup = () => {
       return;
     }
     try {
-      const res = await publicWebsite.post(`${api}/api/user/register/`, {
+      const res = await publicWebsite.post(`/api/user/register/`, {
         first_name: data.first_name,
         last_name: data.last_name,
         username: data.email,
