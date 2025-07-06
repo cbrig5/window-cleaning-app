@@ -1,30 +1,25 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import cleanerMan from '../../assets/window_clean_man.png';
-import own_design_more_blur_bg from '../../assets/home_background.png';
 import IntroBox from '../../components/IntroBox/IntroBox';
-
+import Gallery from '../../components/Gallery/Gallery';
+import ReviewBar from '../../components/ReviewBar/ReviewBar';
 import './home.css';
 
-const Home = () => {
-  return (
-    <Container fluid className="border border-danger">
-        <Row >
-            <Col className="p-0">
-                <div className="position-relative vh-100">
-                    <Image src={own_design_more_blur_bg} alt="foggy glass" fluid className='w-100 h-100'/>
-                    <div className="position-absolute translate-middle-y"
-                        style={{ left: '10%', top: '40%' }}>
-                        <IntroBox />
-                    </div>
-                    <Image src={cleanerMan} alt="Cleaning Guy" fluid className="position-absolute bottom-0 end-0 cleaner-man"/>
-                </div>
-            </Col>
-        </Row>
+const Home = () => (
+  <div className="home-hero d-flex flex-column min-vh-100">
+    <Container fluid className="flex-grow-1">
+      <Row className="w-100 min-vh-100 align-items-center">
+        <Col xs={12} md={6} lg={5} className="mx-auto mb-4 mb-md-0 d-flex justify-content-center form-move-up">
+          <IntroBox />
+        </Col>
+        <Col xs={12} md={6} lg={7} className="d-none d-md-flex justify-content-center d-sm-none">
+          <Gallery />
+        </Col>
+      </Row>
     </Container>
-  )
-}
+    <ReviewBar />
+  </div>
+);
 
-export default Home
+export default Home;
