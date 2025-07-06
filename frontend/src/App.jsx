@@ -7,7 +7,6 @@ import Login from './pages/Login/Login';
 import Invoices from './pages/Invoices/Invoices';
 import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import Gallery from './pages/Gallery/Gallery';
 
 function Logout() {
   localStorage.removeItem(ACCESS_TOKEN);
@@ -33,8 +32,6 @@ function AppWrapper() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/gallery" element={<Gallery />} />
-
       </Routes>
     </>
   );

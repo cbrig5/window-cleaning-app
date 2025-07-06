@@ -7,7 +7,6 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import useAuthStatus from '../../hooks/useAuthStatus';
-import { ACCESS_TOKEN } from '../../constants';
 
 
 const AccountDropdown = () => {

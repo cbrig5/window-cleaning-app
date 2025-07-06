@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import IntroBox from '../../components/IntroBox/IntroBox';
 import Gallery from '../../components/Gallery/Gallery';
-import ReviewBar from '../../components/ReviewBar/ReviewBar';
 import './home.css';
 
 const Home = () => (
@@ -18,7 +17,6 @@ const Home = () => (
         </Col>
       </Row>
     </Container>
-    <ReviewBar />
   </div>
 );
 

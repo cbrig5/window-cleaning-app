@@ -27,7 +27,6 @@ function NavBar() {
               <Navbar.Collapse id="main-navbar-nav">
                 <Nav className="justify-content-center align-items-center gap-2 gap-md-4 flex-wrap">
                   <Nav.Link href="#services" className='text-white small-nav'>Services</Nav.Link>
-                  <Nav.Link href="#gallery" className='text-white small-nav'>Gallery</Nav.Link>
                   <Nav.Link href="#about" className='text-white small-nav'>About</Nav.Link>
                   <Nav.Link href="#faq" className='text-white small-nav'>FAQ</Nav.Link>
                   { isAuthorized &&
