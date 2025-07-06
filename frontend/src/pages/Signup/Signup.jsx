@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { Button, Form, Container, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import website from '../../website';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants';
 import publicWebsite from '../../publicWebsite';
 
