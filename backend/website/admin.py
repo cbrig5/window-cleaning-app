@@ -6,9 +6,9 @@ admin.site.register(Service)
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone')
-    search_fields = ('name', 'email')
-    ordering = ('name', 'created_on')
+    list_display = ('user__first_name', 'user__last_name', 'user__email', 'phone')
+    search_fields = ('user__first_name', 'user__last_name', 'user__email')
+    ordering = ('user__first_name', 'user__creation_date')
 
 @admin.register(Quote)
 class QuoteAdmin(admin.ModelAdmin):

@@ -12,11 +12,9 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def user_info(request):
-    return Response(data)   
     if request.user.is_authenticated:
         user = request.user
         data = {
@@ -25,5 +23,6 @@ def user_info(request):
             "last_name": user.last_name,
             "email": user.username,
         }
+        return Response(data)
     else:
-        return JsonResponse({"error": "User not authenticated"}, status=401)
+        return Response({"error": "User not authenticated"}, status=401)
